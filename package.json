@@ -1,0 +1,19 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "A wiki application for users to create and share wikis",
+  "main": "index.js",
+  "scripts": {
+    "test": "export NODE_ENV=test && jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seongyeonjin/blocipedia.git"
+  },
+  "author": "Allison Jin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/seongyeonjin/blocipedia/issues"
+  },
+  "homepage": "https://github.com/seongyeonjin/blocipedia#readme"
+}
