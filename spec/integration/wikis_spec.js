@@ -124,6 +124,46 @@ describe("routes : wikis", () => {
   
     });//:id/destroy
 
+    describe("GET /wikis/:id/edit", () => {
+
+        it("should render a view with an edit wiki form", (done) => {
+          request.get(`${base}${this.wiki.id}/edit`, (err, res, body) => {
+            expect(err).toBeNull();
+            expect(body).toContain("Edit Wiki");
+            expect(body).toContain("JS Frameworks");
+            done();
+          });
+        });
+  
+    });//:id/edit
+    describe("POST /wikis/:id/update", () => {
+
+        it("should update the wiki with the given values", (done) => {
+          const options = {
+            url: `${base}${this.wiki.id}/update`,
+            form: {
+              title: "JavaScript Frameworks",
+              body: "There are a lot of them"
+            }
+          };
+          //#1
+          request.post(options,
+            (err, res, body) => {
+  
+              expect(err).toBeNull();
+              //#2
+              Wiki.findOne({
+                where: { id: this.wiki.id }
+              })
+                .then((wiki) => {
+                  expect(wiki.title).toBe("JavaScript Frameworks");
+                  done();
+                });
+            });
+        });
+  
+      });//:id/update
+
 });
 
 
