@@ -1,8 +1,7 @@
 const wikiQueries = require("../db/queries.wikis.js");
-
+const passport = require("passport");
 module.exports = {
     index(req, res, next) {
-        //res.send("TODO: list all wikis");
 
         wikiQueries.getAllWikis((err, wikis) => {
 
@@ -12,7 +11,25 @@ module.exports = {
                 res.render("wikis/index", { wikis });
             }
         })
+    },
+
+    new(req, res, next){
+        res.render("wikis/new");
+    },
+
+    create(req, res, next){
+        let newWiki = {
+          title: req.body.title,
+          body: req.body.body
+        };
+        wikiQueries.addWiki(newWiki, (err, wiki) => {
+          if(err){
+            res.redirect(500, "/wikis/new");
+          } else {
+            res.redirect(303, `/wikis/${wiki.id}`);
+          }
+        });
     }
 
-    
+
 }
