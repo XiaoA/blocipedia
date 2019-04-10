@@ -99,16 +99,12 @@ describe("routes : wikis", () => {
 
         it("should delete the wiki with the associated ID", (done) => {
   
-          //#1
           Wiki.all()
             .then((wikis) => {
-  
-              //#2
+
               const wikiCountBeforeDelete = wikis.length;
   
               expect(wikiCountBeforeDelete).toBe(1);
-  
-              //#3
               request.post(`${base}${this.wiki.id}/destroy`, (err, res, body) => {
                 Wiki.all()
                   .then((wikis) => {
@@ -151,7 +147,6 @@ describe("routes : wikis", () => {
             (err, res, body) => {
   
               expect(err).toBeNull();
-              //#2
               Wiki.findOne({
                 where: { id: this.wiki.id }
               })
