@@ -62,7 +62,6 @@ describe("routes : users", () => {
             );
         });
 
-        // #3
         it("should not create a new user with invalid attributes and redirect", (done) => {
             request.post(
                 {
