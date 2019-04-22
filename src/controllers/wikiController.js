@@ -33,7 +33,7 @@ module.exports = {
                 title: req.body.title,
                 body: req.body.body,
                 userId: req.user.id,
-                private: false
+                private: req.body.private == "isPrivate"
             };
             wikiQueries.addWiki(newWiki, (err, wiki) => {
                 if (err) {
@@ -88,8 +88,14 @@ module.exports = {
     },
 
     update(req, res, next) {
+        let updatedWiki = {
+            title: req.body.title,
+            body: req.body.body,
+            userId: req.user.id,
+            private: req.body.private == "isPrivate"
+          };
 
-        wikiQueries.updateWiki(req, req.body, (err, wiki) => {
+        wikiQueries.updateWiki(req, updatedWiki, (err, wiki) => {
 
             if (err || wiki == null) {
                 res.redirect(404, `/wikis/${req.params.id}/edit`);

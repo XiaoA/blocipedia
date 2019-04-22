@@ -1,49 +1,55 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <% include ../static/partials/head.ejs %>
-  </head>
-  <body>
-    <% include ../static/partials/navbar.ejs %>
 
-    <main class="container">
-            <% include ../static/partials/messages.ejs %>
-      <h1>Edit Wiki</h1>
+<head>
+  <% include ../static/partials/head.ejs %>
+</head>
 
-<!-- #1 -->
-      <form action="/wikis/<%= wiki.id %>/update" method="post">
-        <div class="form-group">
-          <label for="title">Wiki title</label>
-<!-- #2 -->
-          <input value="<%= wiki.title %>" type="text" class="form-control" name="title" aria-describedby="titleHelp" placeholder="Enter Title">
-          <small class="text-muted" id="titleHelp">title must be at least 5 characters in length.</small>
-        </div>
-        <div class="form-group">
-          <label for="body">Wiki Body</label>
-<!-- #3 -->
-          <textarea rows="4" class="form-control" name="body" placeholder="Enter Body"><%= wiki.body %></textarea>
-          
-          <small class="text-muted" id="titleHelp">body must be at least 10 characters in length.</small>
-          
-        </div>
+<body>
+  <% include ../static/partials/navbar.ejs %>
 
-        <% if(currentUser) { %>
-         
-            <div class="form-check">
-              <input class="form-check-input" name="private" type="checkbox" value="true" id="privateWiki">
-              <label class="form-check-label" for="privateWiki">
-                Private Wiki
-              </label>
-            </div>
-          
-        <% } %>
+  <main class="container">
+    <% include ../static/partials/messages.ejs %>
+    <h1>Edit Wiki</h1>
 
+    <!-- #1 -->
+    <form action="/wikis/<%= wiki.id %>/update" method="post">
+      <div class="form-group">
+        <label for="title">Wiki title</label>
+        <!-- #2 -->
+        <input value="<%= wiki.title %>" type="text" class="form-control" name="title" aria-describedby="titleHelp"
+          placeholder="Enter Title">
+        <small class="text-muted" id="titleHelp">title must be at least 5 characters in length.</small>
+      </div>
+      
+      <div class="form-group">
+        <label for="body">Wiki Body</label>
+        <!-- #3 -->
+        <textarea rows="4" class="form-control" name="body" placeholder="Enter Body"><%= wiki.body %></textarea>
 
+        <small class="text-muted" id="titleHelp">body must be at least 10 characters in length.</small>
+
+      </div>
+
+      <% if(currentUser.role == "standard") { %>
         <button type="submit" class="btn btn-primary">Update</button>
-      </form>
-    </main>
+        
+      <% } else { %>
 
-    <% include ../static/partials/baseScripts.ejs %>
+        <div class="checkbox">
+          <label><input type="checkbox" name="private" value="isPrivate" checked="<%= wiki.private %>">Make Private</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+     
+      <% }%>
 
-  </body>
+
+
+    </form>
+  </main>
+
+  <% include ../static/partials/baseScripts.ejs %>
+
+</body>
+
 </html>

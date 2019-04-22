@@ -1,7 +1,7 @@
 const userQueries = require("../db/queries.users.js");
 const passport = require("passport");
 const sendgrid = require('./sendgrid');
-
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 module.exports = {
     signUp(req, res, next) {
         res.render("users/sign_up");
@@ -64,7 +64,7 @@ module.exports = {
       },
 
     upgrade(req, res, next) {
-        const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+
         const token = req.body.stripeToken; // Using Express
         const charge = stripe.charges.create({
             amount: 1500,
@@ -74,7 +74,7 @@ module.exports = {
             statement_descriptor: 'Blocipedia upgrade'
         });
 
-        userQueries.upgrade(req.params.id, (err, user) => {
+        userQueries.upgradeUser(req.params.id, (err, user) => {
             if (err && err.type === "StripeCardError") {
                 req.flash("notice", "Your payment was unsuccessful");
                 res.redirect("/users/profile");
@@ -89,7 +89,7 @@ module.exports = {
  
     downgrade(req, res, next) {
        
-        userQueries.downgrade(req.params.id, (err, user) => {
+        userQueries.downgradeUser(req.params.id, (err, user) => {
             if(err || user === null){
                 req.flash('notice', 'You are no longer a premium user.');
                 res.redirect("/");

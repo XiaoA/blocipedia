@@ -9,19 +9,27 @@
       <% include ../static/partials/messages.ejs %>
       
       <h1>Wikis</h1>
-      <% if(currentUser) { %>
-      <a href="/wikis/new" class="btn btn-success">New Wiki</a>
-      <% } %>
       
-      <ul class="list-group">
-
+      <a href="/wikis/new" class="btn btn-success">New Wiki</a>
+      
+      
+       <ul class="list-group">
         <% wikis.forEach((wiki) => { %>
 
+          <% if(wiki.private && wiki.userId == currentUser.id) { %>
           <li class="list-group-item">
             <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
+            <span class="badge badge-primary">Private</span>
           </li>
+          <% } %>
+
+          <% if(!wiki.private) { %>
+            <li class="list-group-item">
+              <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
+            </li>
+          <% } %>
+
         <% }) %>
-      </ul>
 
     </main>
     <% include ../static/partials/baseScripts.ejs %>

@@ -22,10 +22,12 @@ describe("routes : wikis", () => {
                     request.get({
                         url: "http://localhost:3000/auth/fake",
                         form: {
+                            role: user.role,
                             userId: user.id,
                             email: user.email
                         }
-
+                    }, (err, res, body) => {
+                        done();
                     });
 
                     Wiki.create({
@@ -94,7 +96,7 @@ describe("routes : wikis", () => {
                             done();
                         })
                         .catch((err) => {
-                            fail();
+                            console.log(err);
                             done();
                         });
                 }
@@ -130,10 +132,6 @@ describe("routes : wikis", () => {
                                 .then((wikis) => {
                                     expect(err).toBeNull();
                                     expect(wikis.length).toBe(wikiCountBeforeDelete - 1);
-                                    done();
-                                })
-                                .catch((err) => {
-                                    fail();
                                     done();
                                 })
                         });
@@ -179,10 +177,7 @@ describe("routes : wikis", () => {
                                 done();
 
                             })
-                            .catch((ww) =>{
-                                fail();
-                                done();
-                            } )
+
                     });
             });
 

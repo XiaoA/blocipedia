@@ -1,62 +1,69 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <% include ../static/partials/head.ejs %>
-  </head>
-  <body>
 
-    <% include ../static/partials/navbar.ejs %>
+<head>
+  <% include ../static/partials/head.ejs %>
+</head>
 
-    <main class="container" style="margin-top: 100px;">
+<body>
 
-      <% include ../static/partials/messages.ejs %>
+  <% include ../static/partials/navbar.ejs %>
 
-      <h1> <%=`${user.name}'s Profile ` %></h1>
-      
-      <% if(currentUser.role == "standard") { %>
-      
-      <h2>Upgrade your account</h2>
-        <hr>
-      <p>When you upgrade to premium, you'll gain access to make your own private wikis.</p>
+  <main class="container" style="margin-top: 100px;">
 
-      <div class="row">
-       <div class="col-md-8">
-         <form action="/users/<%=currentUser.id %>/upgrade" method="POST">
+    <% include ../static/partials/messages.ejs %>
 
-            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_NV8CnxeN2OzZ2Ci9buoO465X00jHv0qNeN"
-            data-amount="999" 
-            data-name="Stripe.com" 
-            data-description="Preimium Membership Charge" data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-            data-locale="auto"
-            data-currency = "usd">
+    <h1>
+      <%=`${user.name}'s Profile ` %>
+    </h1>
+
+    <p><a href="/wikis" >view all public wikis</a></p>
+
+    <% if(currentUser.role == "standard") { %>
+
+    <h2>Upgrade your account</h2>
+    <hr>
+    <p>When you upgrade to premium, you'll gain access to make your own private wikis.</p>
+
+    <div class="row">
+      <div class="col-md-8">
+        <form action="/users/<%=currentUser.id %>/upgrade" method="POST">
+
+          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_NV8CnxeN2OzZ2Ci9buoO465X00jHv0qNeN"
+            data-amount="999" data-name="Stripe.com" data-description="Preimium Membership Charge" data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+            data-locale="auto" data-currency="usd">
             </script>
 
-         </form>
+        </form>
+      </div>
+    </div>
+
+    <% } else { %>
+    <div>
+      <p>
+        <button class="btn btn-danger" type="button" data-toggle="collapse" data-target="#collapseExample"
+          aria-expanded="false" aria-controls="collapseExample">
+          Downgrade Account
+        </button>
+      </p>
+
+      <div class="collapse">
+        <div class="card card-body">
+          All private wikis will be public.
+          <form action="/users/<%=currentUser.id %>/downgrade" method="POST">
+            <button type="submit" class="btn btn-outline-danger btn-sm">Confirm</button>
+          </form>
         </div>
       </div>
 
-      <% } else { %>
-      <div>
-        <p>
-          <button class="btn btn-danger" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-            Downgrade Account
-          </button>
-        </p>
-          <div class="collapse" id="collapseExample">
-            <div class="card card-body">
-              All private wikis will be public.
-              <form action="/users/<%=currentUser.id %>/downgrade" method="POST">
-                <button type="submit" class="btn btn-outline-danger btn-sm">Confirm</button>
-              </form>
-          </div>
-        </div>
-      </div>
-        <a href="/wikis/new" class="btn btn-success">Create a new wiki</a>
-      <% }%>
-      </main>
+    </div>
+    <a href="/wikis/new" class="btn btn-success">Create a new wiki</a>
+    <% }%>
+  </main>
 
 
-    <% include ../static/partials/baseScripts.ejs %>
+  <% include ../static/partials/baseScripts.ejs %>
 
-  </body>
+</body>
+
 </html>

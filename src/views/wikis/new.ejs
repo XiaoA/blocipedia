@@ -22,18 +22,19 @@
           <textarea rows="4" class="form-control" name="body" placeholder="Enter Body"></textarea>
         </div>
         
-        <% if(currentUser) { %>
-         
-            <div class="form-check">
-              <input class="form-check-input" name="private" type="checkbox" value="true" id="privateWiki">
-              <label class="form-check-label" for="privateWiki">
-                Private Wiki
-              </label>
-            </div>
+        <% if(currentUser.role == "standard") { %>
+          <button type="submit" class="btn btn-primary">Submit</button>
+          
+            <% } else { %>
+              
+              <div class="checkbox">
+                <label><input type="checkbox" name="private" value="isPrivate">Make Private</label>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
           
         <% } %>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        
       </form>
 
     </main>
