@@ -7,6 +7,7 @@ const expressValidator = require("express-validator");
 const session = require("express-session");
 const flash = require("express-flash");
 const passportConfig = require("./passport-config");
+const stripe = require("stripe")("pk_test_NV8CnxeN2OzZ2Ci9buoO465X00jHv0qNeN");
 
 module.exports = {
     init(app, express){
@@ -14,6 +15,7 @@ module.exports = {
         app.set("view engine", "ejs");
         app.use(bodyParser.urlencoded({ extended: true }));
         app.use(express.static(path.join(__dirname, "..", "assets")));
+        app.use(express.static(__dirname + '../public'));
         app.use(logger('dev'));
         app.use(expressValidator());
         app.use(session({

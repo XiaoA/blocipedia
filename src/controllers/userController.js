@@ -3,12 +3,12 @@ const passport = require("passport");
 const sendgrid = require('./sendgrid');
 
 module.exports = {
-    signUp(req, res, next){
-      res.render("users/sign_up");
+    signUp(req, res, next) {
+        res.render("users/sign_up");
     },
 
     create(req, res, next) {
-    
+
         let newUser = {
             name: req.body.name,
             email: req.body.email,
@@ -23,9 +23,9 @@ module.exports = {
             } else {
                 sendgrid.newUserEmail(newUser.email, newUser.name);
                 passport.authenticate("local")(req, res, () => {
-                    
+
                     req.flash("notice", "You've successfully signed in!");
-                    res.redirect("/");
+                    res.redirect("/users/profile");
                 })
             }
         });
@@ -41,43 +41,66 @@ module.exports = {
                 res.redirect("/users/sign_in");
             } else {
                 req.flash("notice", "You've successfully signed in!");
-                res.redirect("/");
+                res.redirect("/users/profile");
             }
         })
     },
 
-    signOut(req, res, next){
+    signOut(req, res, next) {
         req.logout();
         req.flash("notice", "You've successfully signed out!");
         res.redirect("/");
     },
-    upgradePage(req, res, next){
-        res.render("users/upgrade");
-    },
 
-    upgrade(req, res, next){
-        const token = request.body.stripeToken; // Using Express
+    show(req, res, next){
+        userQueries.getUser(req.user.id, (err, user) => {
+          if(err || user === undefined){
+            req.flash("notice", "No user found with that ID");
+            res.redirect("/");
+          } else{
+            res.render("users/profile", {user});
+          }
+        });
+      },
 
+    upgrade(req, res, next) {
+        const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+        const token = req.body.stripeToken; // Using Express
         const charge = stripe.charges.create({
-            amount: 999,
+            amount: 1500,
             currency: 'usd',
-            description: 'Example charge',
+            description: 'upgrade to premium',
             source: token,
             statement_descriptor: 'Blocipedia upgrade'
-          });
+        });
 
         userQueries.upgrade(req.params.id, (err, user) => {
-            if(err && err.type ==="StripeCardError"){
+            if (err && err.type === "StripeCardError") {
                 req.flash("notice", "Your payment was unsuccessful");
-                res.redirect("/users/upgrade");
-            } else{
+                res.redirect("/users/profile");
+            } else {
                 req.flash("notice", "Your payment was successful, you are a Premium Member!");
-                res.redirect(`/`);
-   
+                res.redirect(`/users/${req.params.id}`);
+
             }
-        }) ;
+        });
+    },
+
+ 
+    downgrade(req, res, next) {
+       
+        userQueries.downgrade(req.params.id, (err, user) => {
+            if(err || user === null){
+                req.flash('notice', 'You are no longer a premium user.');
+                res.redirect("/");
+              } else{
+                req.flash("notice", "Your account has been reverted back to standard");
+                res.redirect(`/users/${req.params.id}`);
+              }
+            });
+          
+  
     }
-
-
+  
 
 }
