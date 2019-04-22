@@ -39,7 +39,7 @@ describe("routes : wikis", () => {
                             done();
                         })
                         .catch((err) => {
-                            console.log(err);
+                           // console.log(err);
                             done();
                         });
 
@@ -94,7 +94,7 @@ describe("routes : wikis", () => {
                             done();
                         })
                         .catch((err) => {
-                            console.log(err);
+                            fail();
                             done();
                         });
                 }
@@ -133,7 +133,7 @@ describe("routes : wikis", () => {
                                     done();
                                 })
                                 .catch((err) => {
-                                    console.log(err);
+                                    fail();
                                     done();
                                 })
                         });
@@ -177,7 +177,12 @@ describe("routes : wikis", () => {
                             .then((wiki) => {
                                 expect(wiki.title).toBe("JS Frameworks");
                                 done();
-                            });
+
+                            })
+                            .catch((ww) =>{
+                                fail();
+                                done();
+                            } )
                     });
             });
 

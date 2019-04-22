@@ -1,5 +1,5 @@
 {
-  "name": "y",
+  "name": "blocipedia",
   "version": "1.0.0",
   "description": "A wiki application for users to create and share wikis",
   "main": "index.js",

@@ -10,4 +10,8 @@ router.get("/users/sign_in", userController.signInForm);
 router.post("/users/sign_in", validation.validateUser, userController.signIn);
 router.get("/users/sign_out", userController.signOut);
 
+
+router.get("/users/:id/upgrade", userController.upgradePage);
+router.post("/users/:id/upgrade", userController.upgrade);
+
 module.exports = router;

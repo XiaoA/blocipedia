@@ -11,7 +11,7 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 function newUserEmail(email, name){
   const message = {
     to: email,
-    from: "bolcipedia@blocipedia.com",
+    from: "blocipedia@blocipedia.com",
     message: `Hi, ${name}`,
     subject: "Confirmation email",
     content: [{ type: "text/html", value: `Hi ${name}, welcome to Blocipedia!` }]
