@@ -3,6 +3,7 @@ module.exports = class ApplicationPolicy {
     constructor(user, record) {
       this.user = user;
       this.record = record;
+      
     }
   
     _isAdmin() {
@@ -34,7 +35,7 @@ module.exports = class ApplicationPolicy {
     }
   
     edit() {
-      return this.new() && this.record && (this._isAdmin() && this._isPremium() || this._isOwner())
+      return this.new() && this.record && (this._isAdmin() && this._isPremium() || this._isOwner() )
     }
   
     update() {

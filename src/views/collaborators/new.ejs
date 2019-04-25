@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../static/partials/head.ejs %>
+  </head>
+  <body>
+    <% include ../static/partials/navbar.ejs %>
+
+    <main class="container" style="margin-top: 100px;">
+      <% include ../static/partials/messages.ejs %>
+
+      <h1>Adding a New Collaborator</h1>
+
+      <form action="/wikis/<%= wikiId %>/collaborators/create" method="post">
+        <div class="form-group">
+          <label for="email">Collaborator Email</label>
+          <input type="text" class="form-control" name="email" aria-describedby="titleHelp" placeholder="Enter Collaborator Email">
+        </div>
+          <button type="submit" class="btn btn-primary">Add Collaborator</button>
+      </form>
+
+
+    </main>
+
+    <% include ../static/partials/baseScripts.ejs %>
+
+  </body>
+</html>

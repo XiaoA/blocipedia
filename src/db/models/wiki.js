@@ -16,20 +16,25 @@ module.exports = (sequelize, DataTypes) => {
     },
     userId: {
       type: DataTypes.INTEGER,
-      // onDelete: "CASCADE",
+       onDelete: "CASCADE",
        allowNull: false,
-      // references: {
-      //   model: "Users",
-      //   key: "id",
-      //   as: "userId"
+      references: {
+        model: "Users",
+        key: "id",
+        as: "userId"
     
     }
+  }
   }, {});
   Wiki.associate = function(models) {
     // associations can be defined here
     Wiki.belongsTo(models.User, {
       foreignKey: "userId",
       onDelete: "CASCADE",
+    });
+    Wiki.hasMany(models.Collaborators, {
+      foreignKey: "wikiId",
+      as: "collaborators"
     });
   };
   return Wiki;

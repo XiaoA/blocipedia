@@ -55,7 +55,7 @@ module.exports = {
     show(req, res, next){
         userQueries.getUser(req.user.id, (err, user) => {
           if(err || user === undefined){
-            req.flash("notice", "No user found with that ID");
+            req.flash("notice", "No user found with that ID.");
             res.redirect("/");
           } else{
             res.render("users/profile", {user});
@@ -91,7 +91,7 @@ module.exports = {
        
         userQueries.downgradeUser(req.params.id, (err, user) => {
             if(err || user === null){
-                req.flash('notice', 'You are no longer a premium user.');
+                req.flash("notice", "No user found with that ID .");
                 res.redirect("/");
               } else{
                 req.flash("notice", "Your account has been reverted back to standard");

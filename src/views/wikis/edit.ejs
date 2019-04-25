@@ -40,7 +40,8 @@
           <label><input type="checkbox" name="private" value="isPrivate" checked="<%= wiki.private %>">Make Private</label>
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
-     
+        <button type="submit" class="btn btn-info">
+        <a href="/wikis/<%= wiki.id %>/collaborators/new">Add Collaborator</a></button>
       <% }%>
 
 

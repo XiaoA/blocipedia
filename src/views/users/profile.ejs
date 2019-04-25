@@ -17,8 +17,12 @@
       <%=`${user.name}'s Profile ` %>
     </h1>
 
-    <p><a href="/wikis" >view all public wikis</a></p>
+    <p><a href="/wikis">view all public wikis</a></p>
 
+    <hr>
+    <a href="/wikis/new" class="btn btn-success">Create a new wiki</a><hr>
+
+    <!-- Upgrade account -->
     <% if(currentUser.role == "standard") { %>
 
     <h2>Upgrade your account</h2>
@@ -29,36 +33,41 @@
       <div class="col-md-8">
         <form action="/users/<%=currentUser.id %>/upgrade" method="POST">
 
-          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_NV8CnxeN2OzZ2Ci9buoO465X00jHv0qNeN"
-            data-amount="999" data-name="Stripe.com" data-description="Preimium Membership Charge" data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-            data-locale="auto" data-currency="usd">
-            </script>
+          <script src="https://checkout.stripe.com/checkout.js" 
+          class="stripe-button" 
+          data-key="pk_test_NV8CnxeN2OzZ2Ci9buoO465X00jHv0qNeN"
+          data-amount="1500" 
+          data-name="Stripe.com" 
+          data-description="Preimium Membership Charge" 
+          data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+          data-locale="auto" 
+          data-currency="usd"
+          ></script>
 
         </form>
       </div>
     </div>
 
-    <% } else { %>
-    <div>
-      <p>
-        <button class="btn btn-danger" type="button" data-toggle="collapse" data-target="#collapseExample"
-          aria-expanded="false" aria-controls="collapseExample">
-          Downgrade Account
-        </button>
-      </p>
+    <% } 
+    
+    <!-- Downgrade account -->
+    else { %>
+    <% if(currentUser.role === "premium"); { %>
+    <hr>
 
-      <div class="collapse">
-        <div class="card card-body">
-          All private wikis will be public.
-          <form action="/users/<%=currentUser.id %>/downgrade" method="POST">
-            <button type="submit" class="btn btn-outline-danger btn-sm">Confirm</button>
-          </form>
-        </div>
-      </div>
+    <div>
+      <form action="/users/<%=currentUser.id%>/downgrade" method="POST">
+        <button class="btn btn-danger" type="submit" 
+        data-toggle="collapse" 
+        data-target="#collapseExample"
+        aria-expanded="false" 
+        aria-controls="collapseExample"> Downgrade Account</button>
+      </form>
 
     </div>
-    <a href="/wikis/new" class="btn btn-success">Create a new wiki</a>
-    <% }%>
+
+    <% } %>
+    <% } %>
   </main>
 
 
