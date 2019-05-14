@@ -2,27 +2,39 @@ const ApplicationPolicy = require("./application");
 
 module.exports = class WikiPolicy extends ApplicationPolicy {
 
-    show() {
-        return (this._isAdmin() || this._isPremium() || this._isStandard());
-    }
+    // show() {
+    //     return (this._isAdmin() || this._isPremium() || this._isStandard());
+    // }
 
-    new() {
-        return (this._isAdmin() || this._isPremium() || this._isStandard());
-    }
+    // new() {
+    //     return (this._isAdmin() || this._isPremium() || this._isStandard());
+    // }
 
+    // create() {
+    //     return this.new();
+    // }
+
+    // edit() {
+    //     return (this._isAdmin() || this._isPremium() || this._isStandard());
+    // }
+
+    // update() {
+    //     return this.edit();
+    // }
+
+    // destroy() {
+    //     return this.update();
+    // }
     create() {
-        return this.new();
+      return this.new();
     }
-
-    edit() {
-        return (this._isAdmin() || this._isPremium() || this._isStandard());
-    }
-
+  
     update() {
-        return this.edit();
+      return this.edit();
     }
-
+  
     destroy() {
-        return (this._isAdmin() || this_isPremium());
+      return this.update();
     }
+    
 }

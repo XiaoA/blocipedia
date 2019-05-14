@@ -65,4 +65,29 @@ describe("Wiki", () => {
 
     });
 
+    // describe("#setUser()", () => {
+    //     it("should associate a user and a wiki together", done => {
+    //       User.create({
+    //         email: "example@email.com",
+    //         password: "1234567890"
+    //       }).then(newUser => {
+    //         expect(this.wiki.userId).toBe(this.user.id);
+    
+    //         this.wiki.setUser(newUser).then(wiki => {
+    //           expect(this.wiki.userId).toBe(newUser.id);
+    //           done();
+    //         });
+    //       });
+    //     });
+    //   });
+    
+    //   describe("#getUser()", () => {
+    //     it("should return the associated user", done => {
+    //       this.wiki.getUser().then(associatedUser => {
+    //         expect(associatedUser.email).toBe("example@email.com");
+    //         done();
+    //       });
+    //     });
+    //   });
+
 });

@@ -6,10 +6,10 @@ let users = [];
 
 for(let i =1; i <= 20; i++){
   users.push({
-    name: faker.name.findName(),
+    name: faker.internet.name(),
     email: faker.internet.email(),
     password: faker.internet.password(),
-    //role: "standard",
+    role: 0,
     createdAt: new Date(),
     updatedAt: new Date()
   });

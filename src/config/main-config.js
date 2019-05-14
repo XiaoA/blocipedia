@@ -1,7 +1,7 @@
 require("dotenv").config();
 const path = require("path");
 const viewsFolder = path.join(__dirname, "..", "views");
-const logger = require('morgan');
+const logger = require("morgan");
 const bodyParser = require("body-parser");
 const expressValidator = require("express-validator");
 const session = require("express-session");

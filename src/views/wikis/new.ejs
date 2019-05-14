@@ -1,45 +1,34 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <% include ../static/partials/head.ejs %>
+    <%- include('../static/partials/head.ejs') -%>
   </head>
   <body>
-    <% include ../static/partials/navbar.ejs %>
-    <% include ../static/partials/messages.ejs %>
-    <main class="container">
-
-      <h1>New Wiki</h1>
-
-      <form action="/wikis/create" method="post">
-
+    <%- include('../static/partials/navbar.ejs') -%>
+     <main class="container">
+       <h1>New Wiki</h1>
+       <form action="/wikis/create" method="post">
         <div class="form-group">
           <label for="title">Wiki Title</label>
           <input type="text" class="form-control" name="title" aria-describedby="titleHelp" placeholder="Enter Title">
         </div>
-
         <div class="form-group">
-          <label for="body">Wiki Body</label>
-          <textarea rows="4" class="form-control" name="body" placeholder="Enter Body"></textarea>
+         <label for="body">Wiki body</label>
+         <textarea rows="4" class="form-control" name="body" placeholder="Enter Wiki body"></textarea>
         </div>
-        
-        <% if(currentUser.role == "standard") { %>
-          <button type="submit" class="btn btn-primary">Submit</button>
-          
-            <% } else { %>
-              
-              <div class="checkbox">
-                <label><input type="checkbox" name="private" value="isPrivate">Make Private</label>
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
-          
-        <% } %>
 
-        
+        <% if(currentUser && (currentUser.role == "premium" || currentUser.role == "admin")) { %>
+	        <div class="form-group">
+        	<label for="private">Would you like to make this a private wiki?</label>
+        	<select class="form-control" name="private">
+          <option value='false'>Public</option>
+          <option value='true'>Private</option>
+          </select>
+	        </div>
+       	<% }%>
+        <button type="submit" class="btn btn-primary">Submit</button>
       </form>
-
-    </main>
-
-    <% include ../static/partials/baseScripts.ejs %>
-
-  </body>
+     </main>
+     <%- include('../static/partials/baseScripts.ejs') -%>
+   </body>
 </html>

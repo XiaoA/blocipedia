@@ -1,37 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <% include ../static/partials/head.ejs %>
+    <%- include('../static/partials/head.ejs') -%>
   </head>
   <body>
-    <main class="container">
-      <% include ../static/partials/navbar.ejs %>
-      <% include ../static/partials/messages.ejs %>
-      
-      <h1>Wikis</h1>
-      
-      <a href="/wikis/new" class="btn btn-success">New Wiki</a>
-      
-      
-       <ul class="list-group">
+    <%- include('../static/partials/navbar.ejs') -%>
+     <main class="container">
+       <h1>Wikis</h1>
+       <% if(currentUser) {%>
+        <a href="/wikis/new" class="btn btn-primary">New Wiki</a>
+        <% } %>
+        <ul class="list-group">
         <% wikis.forEach((wiki) => { %>
-
-          <% if(wiki.private && wiki.userId == currentUser.id) { %>
-          <li class="list-group-item">
-            <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
-            <span class="badge badge-primary">Private</span>
-          </li>
-          <% } %>
-
-          <% if(!wiki.private) { %>
+        	<% if(wiki.private === false) { %>
             <li class="list-group-item">
               <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
-            </li>
+                <a href="/wikis/<%= wiki.id %>/edit" class="btn btn-warning">Edit</a>  
+                <form style="display:initial" action="/wikis/<%= wiki.id %>/destroy" method="post">
+                  <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
           <% } %>
-
-        <% }) %>
-
-    </main>
-    <% include ../static/partials/baseScripts.ejs %>
+       <% }) %>
+         </ul>
+         
+     </main>
   </body>
-</html>
+</html> 

@@ -15,19 +15,12 @@ describe("routes : wikis", () => {
             User.create({
                 name: "Selena",
                 email: "user@example.com",
-                password: "123456789"
+                password: "123456789",
+                rol: "stand"
             })
                 .then((user) => {
                     this.user = user;
-                    request.get({
-                        url: "http://localhost:3000/auth/fake",
-                        form: {
-                            role: user.role,
-                            userId: user.id,
-                            email: user.email
-                        }
-                    }, (err, res, body) => {
-                        done();
+                    
                     });
 
                     Wiki.create({
@@ -48,6 +41,21 @@ describe("routes : wikis", () => {
                 });
 
         });
+    });
+describe("standard user performing CRUD actions for Wiki", () => {
+    beforeEach((done) => {
+    request.get({
+        url: "http://localhost:3000/auth/fake",
+        form: {
+            role: user.role,
+            email: user.email
+        }
+    },
+     (err, res, body) => {
+        done();
+    }
+    );
+});
 
 
         describe("GET /wikis", () => {
@@ -153,6 +161,7 @@ describe("routes : wikis", () => {
             });
 
         });//:id/edit
+        
         describe("POST /wikis/:id/update", () => {
 
             it("should update the wiki with the given values", (done) => {
@@ -184,4 +193,3 @@ describe("routes : wikis", () => {
         });//:id/update
 
     });
-});
