@@ -1,56 +1,71 @@
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <%- include('../static/partials/head.ejs') -%>
+  </head>
+  <body>
+    <%- include('../static/partials/navbar.ejs') -%>
+     <main class="container">
+       <h1>Edit Wiki</h1>
+      <form action="/wikis/<%= wiki.id %>/update" method="post">
+        <div class="form-group">
+          <label for="title">Wiki Title</label>
+          <input value="<%= wiki.title %>" type="text" class="form-control" name="title" aria-describedby="titleHelp" placeholder="Enter Title">
+        </div>
+        <div class="form-group">
+         <label for="body">Wiki body</label>
+         <textarea rows="4" class="form-control" name="body" placeholder="Enter Description"><%= wiki.body %></textarea>
+        </div>
+        <% if(currentUser && (currentUser.role == "premium" || currentUser.role == "admin")) { %>
+          <div class="form-group">
+          <label for="private">change your wiki to private/public</label>
+          <select class="form-control" name="private">
+          <option value='false'>Public</option>
+          <option value='true'>Private</option>
+          </select>
+          </div>
+         <% }%>
+        <button type="submit" class="btn btn-primary">Update</button>
+
+  
+         
+        <% if ((wiki.private == true) && currentUser && (currentUser.role === 'admin' || (currentUser.role === 'premium' && currentUser.id === wiki.userId))){%>
+          <form action="/wikis/<%= wiki.id %>/collaborators" method="post">
+          <a href='/wikis/<%= wiki.id %>/collaborators' class="btn btn-info">Edit Collaborators</a>
+          </form>
+       <% }%>
+      </form>
+    </main>
+     <%- include('../static/partials/baseScripts.ejs') -%>
+   </body>
+</html> -->
+
 <!DOCTYPE html>
 <html>
-
-<head>
-  <% include ../static/partials/head.ejs %>
-</head>
-
-<body>
-  <% include ../static/partials/navbar.ejs %>
-
-  <main class="container">
-    <% include ../static/partials/messages.ejs %>
-    <h1>Edit Wiki</h1>
-
-    <!-- #1 -->
-    <form action="/wikis/<%= wiki.id %>/update" method="post">
-      <div class="form-group">
-        <label for="title">Wiki title</label>
-        <!-- #2 -->
-        <input value="<%= wiki.title %>" type="text" class="form-control" name="title" aria-describedby="titleHelp"
-          placeholder="Enter Title">
-        <small class="text-muted" id="titleHelp">title must be at least 5 characters in length.</small>
-      </div>
-      
-      <div class="form-group">
-        <label for="body">Wiki Body</label>
-        <!-- #3 -->
-        <textarea rows="4" class="form-control" name="body" placeholder="Enter Body"><%= wiki.body %></textarea>
-
-        <small class="text-muted" id="titleHelp">body must be at least 10 characters in length.</small>
-
-      </div>
-
-      <% if(currentUser.role == "standard") { %>
-        <button type="submit" class="btn btn-primary">Update</button>
-        
-      <% } else { %>
-
-        <div class="checkbox">
-          <label><input type="checkbox" name="private" value="isPrivate" checked="<%= wiki.private %>">Make Private</label>
+  <head>
+    <%- include('../static/partials/head.ejs') -%>
+  </head>
+  <body>
+    <%- include('../static/partials/navbar.ejs') -%>
+     <main class="container">
+       <h1>Edit Wiki</h1>
+      <form action="/wikis/<%= wiki.id %>/update" method="post">
+        <div class="form-group">
+          <label for="title">Wiki Title</label>
+          <input value="<%= wiki.title %>" type="text" class="form-control" name="title" aria-describedby="titleHelp" placeholder="Enter Title">
+        </div>
+        <div class="form-group">
+         <label for="body">Wiki body</label>
+         <textarea rows="4" class="form-control" name="body" placeholder="Enter Description"><%= wiki.body %></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
-        <button type="submit" class="btn btn-info">
-        <a href="/wikis/<%= wiki.id %>/collaborators/new">Add Collaborator</a></button>
-      <% }%>
-
-
-
-    </form>
-  </main>
-
-  <% include ../static/partials/baseScripts.ejs %>
-
-</body>
-
-</html>
+        <% if ((wiki.private == true) && currentUser && (currentUser.role === 'admin' || (currentUser.role === 'premium' && currentUser.id === wiki.userId))){%>
+          <form action="/wikis/<%= wiki.id %>/collaborators" method="post">
+          <a href='/wikis/<%= wiki.id %>/collaborators' class="btn btn-info">Edit Collaborators</a>
+          </form>
+       <% }%>
+      </form>
+    </main>
+     <%- include('../static/partials/baseScripts.ejs') -%>
+   </body>
+</html> 

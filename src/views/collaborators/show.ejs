@@ -4,19 +4,40 @@
     <% include ../static/partials/head.ejs %>
   </head>
   <body>
-
     <% include ../static/partials/navbar.ejs %>
 
-    <main class="container" style="margin-top: 100px;">
+    <main class="container">
 
-      <h1><%= collaborator.email %> is now a collaborator on your wiki.</h1>
-      <form style="display:initial" action="/wikis/<% wikiId %>/collaborators<%= collaborator.id %>/destroy" method="post">
-        <button type="submit" class="btn btn-danger">Delete</button>
-      </form>
+      <% include ../static/partials/messages.ejs %>
 
-    </main>
-
-    <% include ../static/partials/baseScripts.ejs %>
-
-  </body>
-</html>
+  <% if(wiki.private == true)  { %>
+    <h2> Collaborators </h2>
+    <% if(collaborators) { %>
+      
+      <ul class ="list-group">
+        <% collaborators.forEach((collaborator) => {  %>
+            <li class="list-group-item">
+                <%= collaborator.User.email %>
+                <% if(currentUser && (currentUser.role === "premium" || currentUser.role === "admin")) { %>
+                  <form action="/wikis/<%= wiki.id %>/collaborators/delete" method="post">
+                  <button type="submit" class="btn btn-danger">Remove</button>
+                  <input type="hidden" value="<%= collaborator.User.id %>" class="form-control" name="collaborator" >
+                    </form>
+                <% } %>
+           </li>
+        <% }) %>
+      </ul>
+    
+    <% } %>
+    <% if(currentUser && (currentUser.role === "premium" || currentUser.role === "admin")) { %>
+      <form action="/wikis/<%= wiki.id %>/collaborators/create" method="post">
+        <div class="input-group">
+          <input type="text" class="form-control" name="collaborator" placeholder="Enter name">
+          <button type="submit" class="btn btn-primary">Add</button>
+        </div>
+        </form>
+        <% } %>
+        <% } %>
+        </main>
+    </body>
+</html> 

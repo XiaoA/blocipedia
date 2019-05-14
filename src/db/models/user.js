@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     role: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
       defaultValue: "standard"
     }
   }, {});
@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "userId",
       as: "wikis"
     });
-    User.hasMany(models.Collaborators, {
+    User.hasMany(models.Collaborator, {
       foreignKey: "userId",
       as: "collaborators"
     });
@@ -38,6 +38,9 @@ module.exports = (sequelize, DataTypes) => {
   };
   User.prototype.isPremium = function(){
     return this.role === "premium";
+  };
+  User.prototype.isStandard = function() {
+    return this.role === "standard";
   };
   return User;
 };

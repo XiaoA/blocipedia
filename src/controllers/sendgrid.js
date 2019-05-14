@@ -1,14 +1,14 @@
 const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+const sgApiKey = process.env.SENDGRI_API_KEY;
+if (sgApiKey) sgMail.setApiKey(sgApiKey);
 
 // function sendMail(subject, text, to, from="default@blocipedia.com") {
 //   sgMail.send({ to, from, subject, text });
 // }
 
 // module.exports = sendMail;
-
-
 function newUserEmail(email, name){
+  if (sgApiKey) {
   const message = {
     to: email,
     from: "blocipedia@blocipedia.com",
@@ -18,7 +18,7 @@ function newUserEmail(email, name){
   }
   sgMail.send(message);
 }
-
+}
 module.exports = {
   newUserEmail
 }

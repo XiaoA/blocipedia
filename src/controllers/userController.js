@@ -2,6 +2,11 @@ const userQueries = require("../db/queries.users.js");
 const passport = require("passport");
 const sendgrid = require('./sendgrid');
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const User = require("../db/models/").User;
+const Wiki = require("../db/models/").Wiki;
+const wikiQueries = require("../db/queries.wikis.js");
+const Collaborator = require("../db/models").Collaborator;
+const Authorizer = require("../policies/wiki");
 module.exports = {
     signUp(req, res, next) {
         res.render("users/sign_up");
@@ -40,7 +45,7 @@ module.exports = {
                 req.flash("notice", "Sign in failed. Please try again.")
                 res.redirect("/users/sign_in");
             } else {
-                req.flash("notice", "You've successfully signed in!");
+                req.flash("notice", "You've successfully signed in!!!!");
                 res.redirect("/users/profile");
             }
         })
@@ -55,7 +60,7 @@ module.exports = {
     show(req, res, next){
         userQueries.getUser(req.user.id, (err, user) => {
           if(err || user === undefined){
-            req.flash("notice", "No user found with that ID.");
+            req.flash("notice", "No user found with that ID");
             res.redirect("/");
           } else{
             res.render("users/profile", {user});
@@ -91,7 +96,7 @@ module.exports = {
        
         userQueries.downgradeUser(req.params.id, (err, user) => {
             if(err || user === null){
-                req.flash("notice", "No user found with that ID .");
+                req.flash("notice", "You are no longer a premium user.");
                 res.redirect("/");
               } else{
                 req.flash("notice", "Your account has been reverted back to standard");
@@ -100,7 +105,18 @@ module.exports = {
             });
           
   
-    }
-  
+    },
+
+    showCollaborations(req, res, next) {
+        userQueries.getUser(req.user.id, (err, result) => {
+            user = result["user"];
+            collaborations = result["collaborations"];
+            if(err || user == null) {
+                res.redirect(404, "/");
+            } else {
+                res.render("users/collaborations", {user, collaborations});
+                }
+          });
+        }
 
 }

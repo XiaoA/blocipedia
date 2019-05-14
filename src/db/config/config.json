@@ -25,7 +25,7 @@
     "dialect": "postgres",
     "logging": false,
     "operatorsAliases": false,
-    "use_env_variable": "https://seongyeon--blocipedia.herokuapp.com/",
+    "use_env_variable":"https://seongyeon--blocipedia.herokuapp.com/",
     "db":  "https://seongyeon--blocipedia.herokuapp.com/"
   }
 }

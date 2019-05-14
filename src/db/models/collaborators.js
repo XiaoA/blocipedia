@@ -1,31 +1,55 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var Collaborators = sequelize.define('Collaborators', {
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false
+  var Collaborator = sequelize.define(
+    'Collaborator',
+    {
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
+      wikiId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      }
     },
-    wikiId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    }
-  }, {});
-  Collaborators.associate = function(models) {
+    {}
+  );
+  Collaborator.associate = function(models) {
     // associations can be defined here
-    Collaborators.belongsTo(models.User, {
-      foreignKey: "userId",
-      onDelete: "CASCADE"
-    });
-
-    Collaborators.belongsTo(models.Wiki, {
+    Collaborator.belongsTo(models.Wiki, {
       foreignKey: "wikiId",
       onDelete: "CASCADE"
     });
 
+    Collaborator.belongsTo(models.User, {
+      foreignKey: "userId",
+      onDelete: "CASCADE"
+    });
+
+    Collaborator.addScope("collaboratorsFor", (wikiId) => {
+      return {
+      include: [{
+        model: models.User
+      }],
+      where: {wikiId: wikiId},
+      order: [["createdAt", "ASC"]]
+      }
+    });
+
+    Collaborator.addScope("userCollaborationsFor", (userId) => {
+      return{
+        include: [{
+          model: models.Wiki
+        }],
+        where: {userId: userId},
+        order: [["createdAt", "ASC"]]
+      }
+    });
+
   };
-  return Collaborators;
+  return Collaborator;
 };
