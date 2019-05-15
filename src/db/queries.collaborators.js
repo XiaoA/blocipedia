@@ -34,16 +34,15 @@ module.exports = {
 
                         let newCollaborator = {
                             userId: user.id,
-                            wikiId: req.params.wikiId
+                            wikiId: req.params.wikiId,
+                            email: req.body.collaborator
                         };
-                        return Collaborator.create({
-                                userId: user.id,
-                                wikiId: req.params.wikiId
-                            })
+                       Collaborator.create(newCollaborator)
                             .then((collaborator) => {
                                 callback(null, collaborator);
                             })
                             .catch((err) => {
+                                console.log(err, "queries.co...")
                                 callback("User can't be found!")
                             })
                     })
