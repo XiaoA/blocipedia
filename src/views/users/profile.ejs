@@ -16,13 +16,12 @@
     <h1>Profile</h1>
     <hr>
 
-    <ul>
-      <h3>
-        <li><a href="/wikis">public wikis</a></li>
-
-        <li><a href="/wikis/new">Create a new wiki</a></li>
-        <li><a href="/users/<%= currentUser.id %>/collaborations">Collaborations</a></li>
-    </ul></h3> <hr>
+    <div class="list-group"><h4>
+      <a href="/wikis" class="list-group-item list-group-item-action list-group-item-success">public wikis</a>
+     
+      <a href="/wikis/new" class="list-group-item list-group-item-action list-group-item-warning">Create a new wiki</a>
+      <a href="/users/<%= currentUser.id %>/collaborations" class="list-group-item list-group-item-action list-group-item-info">Collaborations</a></h4>
+    </div>
 
     <% if(currentUser.role == "standard") { %>
 
