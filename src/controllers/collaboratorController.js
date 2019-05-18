@@ -31,6 +31,7 @@ module.exports = {
     create(req, res, next) {
         collaboratorQueries.createCollaborator(req, (err, collaborator) => {
             if (err) {
+                console.log(err, "create..")
                 req.flash("notice", "User already exists")
             }
             res.redirect(`/wikis/${req.params.wikiId}/collaborators`);

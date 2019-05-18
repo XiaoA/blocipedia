@@ -12,14 +12,14 @@ module.exports = {
 			}
 		})
 	},
-  private(req, res, next){
+  privateIndex(req, res, next){
     wikiQueries.getAllWikis((err, wikis) => {
       if(err){
         res.redirect(500, "static/index");
       } else {
         res.render("wikis/private", {wikis});
       }
-    })
+    });
   },
 
 
@@ -34,8 +34,7 @@ module.exports = {
 	},
 
   create(req, res, next) {
-
-	
+    const authorized = new Authorizer(req.user).create();
 			  let newWiki = {
 				title: req.body.title,
 				body:req.body.body,
@@ -45,7 +44,7 @@ module.exports = {
         wikiQueries.addWiki(newWiki, (err, wiki) => {
           if(err){
             console.log(err);
-            res.redirect(500, "/wikis/new");
+            res.redirect(500, "/wikis");
           } else {
             console.log(newWiki);
             res.redirect(303, `/wikis/${wiki.id}`);
@@ -57,21 +56,26 @@ module.exports = {
   show(req, res, next) {
  
     wikiQueries.getWikis(req.params.id, (err, result) => {
-      wiki = result["wiki"];
-      collaborators = result["collaborators"];
+	    wiki = result["wiki"];
+	    collaborators = result["collaborators"];
 
-      if(err || wiki == null){
-        res.redirect(404, "/");
-      } else {
-        wiki.body = markdown.toHTML(wiki.body);
-        res.render("wikis/show", {wiki});
-      }
-    });
+            if(err || wiki == null){
+                res.redirect(404, "/");
+            } else {
+		const authorized = new Authorizer(req.user, wiki, collaborators).showCollaborators();
+                if(authorized){
+                    wiki.body = markdown.toHTML(wiki.body);
+                    res.render("wikis/show", {wiki});
+                } else {
+                    req.flash("notice", "You are not authorized to do that.");
+                    res.redirect(`/wikis`);
+                }
+            }
+        });
   },
   destroy(req, res, next) {
     wikiQueries.deleteWiki(req.params.id, (err,wiki) =>{
       if(err){
-  console.log("ERROR:", err);
           res.redirect( 500, `/wikis/${wiki.id}`)
       }else{
   const authorized = new Authorizer (req.user,wiki).destroy();

@@ -2,39 +2,44 @@ const ApplicationPolicy = require("./application");
 
 module.exports = class WikiPolicy extends ApplicationPolicy {
 
-    // show() {
-    //     return (this._isAdmin() || this._isPremium() || this._isStandard());
-    // }
+  constructor(user, record, collaborators) {
+    this.user = user;
+    this.record = record;
+    this.collaborators = collaborators;
+  }
 
-    // new() {
-    //     return (this._isAdmin() || this._isPremium() || this._isStandard());
-    // }
-
-    // create() {
-    //     return this.new();
-    // }
-
-    // edit() {
-    //     return (this._isAdmin() || this._isPremium() || this._isStandard());
-    // }
-
-    // update() {
-    //     return this.edit();
-    // }
-
-    // destroy() {
-    //     return this.update();
-    // }
-    create() {
-      return this.new();
+  show() {
+    if (this._isAdmin() || this._isPremium() || this._isStandard())
+      return true;
+    for (const collaborator in collaborators) {
+      if (collaborator.id == user.id)
+        return true;
     }
-  
-    update() {
-      return this.edit();
-    }
-  
-    destroy() {
-      return this.update();
-    }
-    
+  }
+
+  // show() {
+  //     return (this._isAdmin() || this._isPremium() || this._isStandard());
+  // }
+
+  new() {
+    return (this._isAdmin() || this._isPremium() || this._isStandard());
+  }
+
+  create() {
+    return this.new();
+  }
+
+  edit() {
+    return (this._isAdmin() || this._isPremium() || this._isStandard());
+  }
+
+  update() {
+    return this.edit();
+  }
+
+  destroy() {
+    return this.update();
+  }
+
+
 }

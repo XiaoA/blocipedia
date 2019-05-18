@@ -9,7 +9,7 @@ for(let i =1; i <= 20; i++){
     name: faker.internet.name(),
     email: faker.internet.email(),
     password: faker.internet.password(),
-    role: 0,
+    role: "standard",
     createdAt: new Date(),
     updatedAt: new Date()
   });

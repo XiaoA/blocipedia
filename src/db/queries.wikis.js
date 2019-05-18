@@ -72,8 +72,8 @@ module.exports = {
         });
     },
 
-    makePrivate(id) {
-		return Wiki.all()
+    privateToPublic(id) {
+		return Wiki.findAll()
      .then((wikis) => {
        wikis.forEach((wiki) => {
          if(wiki.userId == id && wiki.private == true) {

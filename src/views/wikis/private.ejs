@@ -6,12 +6,14 @@
   <body>
     <% include ../static/partials/navbar.ejs %>
     <main class="container">
-      <h1>Private Wikis</h1>
+      <h1>Private Wikis</h1><hr>
       <% if(currentUser) { %>
-        <a href="/wikis/new" class="btn btn-success">New Wiki</a>
+        <a href="/wikis/new" class="btn btn-primary">New Wiki</a>
       <% } %>
+
       <ul class="list-group">
         <% wikis.forEach((wiki) => { %>
+          
           <% if(wiki.private ==true && (currentUser && (currentUser.role == "premium" || currentUser.role == "admin"))) { %>
             <li class="list-group-item">
               <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
