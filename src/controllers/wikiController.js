@@ -1,4 +1,3 @@
-
 const wikiQueries = require("../db/queries.wikis.js");
 const Authorizer = require("../policies/application.js");
 const markdown = require( "markdown" ).markdown;
@@ -21,7 +20,6 @@ module.exports = {
       }
     });
   },
-
 
   new(req, res, next){
 		const authorized = new Authorizer (req.user).new();
