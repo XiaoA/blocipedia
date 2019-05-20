@@ -1,0 +1,12 @@
+# blocipedia
+* `Stripe`
+* `Javascript`
+* `Bootstrap`
+* `Node.js`
+* `Passport.js`
+* `SendGrid`
+* `EJS`
+* `Sequelize`
+* `Postgres`
+* `Markdown`
+* `Bcrypt`
