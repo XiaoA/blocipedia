@@ -1,5 +1,5 @@
 const sgMail = require('@sendgrid/mail');
-const sgApiKey = process.env.SENDGRI_API_KEY;
+const sgApiKey = process.env.SENDGRID_API_KEY;
 if (sgApiKey) sgMail.setApiKey(sgApiKey);
 
 // function sendMail(subject, text, to, from="default@blocipedia.com") {
