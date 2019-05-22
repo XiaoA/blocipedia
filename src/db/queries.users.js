@@ -44,7 +44,7 @@ getUser(id, callback) {
 },
 
 upgrade(id, callback){
-return User.findByPk(id)
+return User.findById(id)
 .then((user) => {
   if(!user){
     return callback("User not found");
@@ -61,7 +61,7 @@ return User.findByPk(id)
 },
 
 downgrade(id, callback){
-return User.findByPk(id)
+return User.findById(id)
 .then((user) => {
   if(!user){
     return callback("User not found");

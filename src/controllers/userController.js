@@ -79,7 +79,7 @@ module.exports = {
             statement_descriptor: 'Blocipedia upgrade'
         });
 
-        userQueries.upgradeUser(req.params.id, (err, user) => {
+        userQueries.upgrade(req.params.id, (err, user) => {
             if (err && err.type === "StripeCardError") {
                 req.flash("notice", "Your payment was unsuccessful");
                 res.redirect("/users/profile");
@@ -94,7 +94,7 @@ module.exports = {
  
     downgrade(req, res, next) {
        
-        userQueries.downgradeUser(req.params.id, (err, user) => {
+        userQueries.downgrade(req.params.id, (err, user) => {
             if(err || user === null){
                 req.flash("notice", "You are no longer a premium user.");
                 res.redirect("/");
