@@ -57,16 +57,16 @@ module.exports = {
         res.redirect("/");
     },
 
-    show(req, res, next){
+    show(req, res, next) {
         userQueries.getUser(req.user.id, (err, user) => {
-          if(err || user === undefined){
-            req.flash("notice", "No user found with that ID");
-            res.redirect("/");
-          } else{
-            res.render("users/profile", {user});
-          }
+            if (err || user === undefined) {
+                req.flash("notice", "No user found with that ID");
+                res.redirect("/");
+            } else {
+                res.render("users/profile", { user });
+            }
         });
-      },
+    },
 
     upgrade(req, res, next) {
 
@@ -91,32 +91,32 @@ module.exports = {
         });
     },
 
- 
+
     downgrade(req, res, next) {
-       
+
         userQueries.downgrade(req.params.id, (err, user) => {
-            if(err || user === null){
+            if (err || user === null) {
                 req.flash("notice", "You are no longer a premium user.");
                 res.redirect("/");
-              } else{
+            } else {
                 req.flash("notice", "Your account has been reverted back to standard");
                 res.redirect(`/users/${req.params.id}`);
-              }
-            });
-          
-  
+            }
+        });
+
+
     },
 
     showCollaborations(req, res, next) {
         userQueries.getUser(req.user.id, (err, result) => {
             user = result["user"];
             collaborations = result["collaborations"];
-            if(err || user == null) {
+            if (err || user == null) {
                 res.redirect(404, "/");
             } else {
-                res.render("users/collaborations", {user, collaborations});
-                }
-          });
-        }
+                res.render("users/collaborations", { user, collaborations });
+            }
+        });
+    }
 
 }
