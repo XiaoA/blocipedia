@@ -21,55 +21,47 @@
                 <!-- logo OR pic (svg)-->
 
  <!-- Begin Image -->
- <!-- Invisible Box-->
- <div class="box">
- 
-   <h1 class="hi"><span>&#129498;</span> Hello...</h1>
-  <!-- Circular Head-->
-  <div class="head">  
-    
-    <!-- Circular Head Copy -->
-    <div class="head-copy"></div>
-    
-     <!-- Left Ear ~ Light Gray-->
-    <div class="ear-left">
-      
-     <!-- Inner ear ~ Dark Gray -->
-    <div class="inner-ear"></div>
+ <!-- https://codepen.io/donovanh/pen/pvMeeB -->
+ <article class="wwdc">
+  <span class="spin span">
+    <!-- Large Circles -->
+    <div class="large circle one"></div>
+    <div class="large circle two"></div>
+    <div class="large circle three"></div>
+    <div class="large circle four"></div>
+    <div class="large circle five"></div>
+    <div class="large circle six"></div>
+    <div class="large circle seven"></div>
+    <div class="large circle eight"></div>
+  </span>
+  <span class="pulse span">
+    <!-- Small Shapes -->
+    <div class="small circle one"></div>
+    <div class="small squircle two"></div>
+    <div class="small circle three"></div>
+    <div class="small squircle four"></div>
+    <div class="small circle five"></div>
+    <div class="small squircle six"></div>
+    <div class="small circle seven"></div>
+    <div class="small squircle eight"></div>
+  </span>
+    <!-- Squircles -->
+    <span class="spin-reverse span">
+      <div class="large squircle one"></div>
+    </span>
+    <div class="large squircle two">
+      <div class="content">
+        <svg viewBox="0 0 160 164" xmlns="http://www.w3.org/2000/svg">
+       <g>
+        <g id="svg_1">
+        </g>
+       </g>
+      </svg>
+      <h1 class="logo-pic">Blocipedia</h1>
+      <p class="logo-pic">2019</p>
     </div>
-    
-    <!-- Right Ear ~ Light Gray-->
-     <div class="ear-right">
-    <!-- Inner Ear ~ Dark Gray-->
-      <div class="inner-ear"></div>
-    </div>
-    
-    <!-- Left Outer Eye ~ White -->
-    <div class="eye-left">
-      <!-- Pupil ~ Black -->
-      <div class="pupil">
-      </div>
-    </div>
-    
-    <!-- Right Outer Eye ~ White -->
-    <div class="eye-right">
-      <!-- Pupil ~ Black -->
-      <div class="pupil">
-      </div>
-    </div>
-    
-     <!-- Nose ~ Brown -->
-     <div class="nose">
-     </div>
-    
-     <!-- Hair ~ Light Gray -->
-    <div class="hair-left"></div>
-    <div class="hair-right"></div>
-    
-  <!-- End Head -->
   </div>
-<!-- End Invisible Box -->
-</div>
+</article>
 
 <!-- image -->
                 
@@ -77,11 +69,15 @@
               <div class="col-md-6 order-md-1 text-center text-md-left pr-md-5">
                 <h1 class="mb-3 bd-text-purple-bright">Welcome to Blocipedia</h1>
                 <p class="lead">
-                  Blocipedia is an application for users to share information.
+                  Blocipedia allows users to create their own wikis and share them publicly or privately with other collaborators.
                 </p>
                 <p class="lead mb-4">
-                  Blocipedia allows users to create, collaborate and share wikis.
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti at similique exercitationem? Animi incidunt ea, ipsum odit maxime tempora tenetur! Iusto praesentium molestiae similique sapiente dignissimos dolorum eius pariatur atque? Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea doloremque, est nihil tenetur similique minima officiis aperiam dolore libero veritatis omnis reiciendis recusandae, distinctio atque ipsam, maxime consequuntur animi vitae.
+                  <ul>
+                    <li>anyone can edit almost every page except private one</li>
+                    <li>anyone can upgrade to a premium member or downgrade to standard member</li>
+                    <li>premium members can edit private page</li>
+                    <li>premium members can invite any users to collaborate on the private page</li>
+                  </ul>
                 </p>
                 <div class="row mx-n2">
                   <div class="col-md px-2">
@@ -105,7 +101,10 @@
     <div class="col-12 col-md-4 p-3 p-md-5 bg-light border border-white">
     
       <h3>Free Membership</h3>
-      <p>Create Public Wikis</p>
+      <p>Public Wikis ONLY</p>
+      <li>create a topic and share your knowledge</li>
+      <li>search for a topic and add your knowledge</li>
+      <li>upgrade to a Premium member and edit your own Wikis</li>
  
       <hr class="half-rule">
       <a class="btn btn-outline-primary" href="/users/sign_in" >Sign In</a>
@@ -114,8 +113,10 @@
     <div class="col-12 col-md-4 p-3 p-md-5 bg-light border border-white">
       
       <h3>Premium Membership</h3>
-      <p>Create private wikis.</p>
-
+      <p>Private & Public Wikis</p>
+      <li>create a private topic and keep it as your secret</li>
+      <li>edit a private topic and invite your collaborators</li>
+      <li>public any your Private Wikis</li>
       <hr class="half-rule">
       <a class="btn btn-outline-primary" href="/users/sign_in">Sign In</a>
     </div>
