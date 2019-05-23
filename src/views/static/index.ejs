@@ -1,117 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
 
-      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <% include ./partials/head.ejs %>
-  </head>
-  <body>
+<head>
 
-      <!-- Navigation -->
-      <% include ./partials/navbar.ejs %>
-      <% include ../static/partials/messages.ejs %>
-      <header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+    crossorigin="anonymous">
+  <% include ./partials/head.ejs %>
+</head>
 
-        </header>
-      <!-- Page Content -->
-      <main class="bd-masthead" id="content" role="main">
-          <div class="container">
-            <div class="row align-items-center">
-              <div class="col-6 mx-auto col-md-6 order-md-2">
-                <!-- logo OR pic (svg)-->
+<body>
 
- <!-- Begin Image -->
- <!-- https://codepen.io/donovanh/pen/pvMeeB -->
- <article class="wwdc">
-  <span class="spin span">
-    <!-- Large Circles -->
-    <div class="large circle one"></div>
-    <div class="large circle two"></div>
-    <div class="large circle three"></div>
-    <div class="large circle four"></div>
-    <div class="large circle five"></div>
-    <div class="large circle six"></div>
-    <div class="large circle seven"></div>
-    <div class="large circle eight"></div>
-  </span>
-  <span class="pulse span">
-    <!-- Small Shapes -->
-    <div class="small circle one"></div>
-    <div class="small squircle two"></div>
-    <div class="small circle three"></div>
-    <div class="small squircle four"></div>
-    <div class="small circle five"></div>
-    <div class="small squircle six"></div>
-    <div class="small circle seven"></div>
-    <div class="small squircle eight"></div>
-  </span>
-    <!-- Squircles -->
-    <span class="spin-reverse span">
-      <div class="large squircle one"></div>
-    </span>
-    <div class="large squircle two">
-      <div class="content">
-        <svg viewBox="0 0 160 164" xmlns="http://www.w3.org/2000/svg">
-       <g>
-        <g id="svg_1">
-        </g>
-       </g>
-      </svg>
-      <h1 class="logo-pic">Blocipedia</h1>
-      <p class="logo-pic">2019</p>
-    </div>
-  </div>
-</article>
+  <!-- Navigation -->
+  <% include ./partials/navbar.ejs %>
+  <% include ../static/partials/messages.ejs %>
+  <header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
 
-<!-- image -->
-                
-              </div>
-              <div class="col-md-6 order-md-1 text-center text-md-left pr-md-5">
-                <h1 class="mb-3 bd-text-purple-bright">Welcome to Blocipedia</h1>
-                <p class="lead">
-                  Blocipedia allows users to create their own wikis and share them publicly or privately with other collaborators.
-                </p>
-                <p class="lead mb-4">
-                  <ul>
-                    <li>anyone can edit almost every page except private one</li>
-                    <li>anyone can upgrade to a premium member or downgrade to standard member</li>
-                    <li>premium members can edit private page</li>
-                    <li>premium members can invite any users to collaborate on the private page</li>
-                  </ul>
-                </p>
-                <div class="row mx-n2">
-                  <div class="col-md px-2">
-                      <a href="/users/sign_up" class="btn btn-lg btn-outline-info w-100 mb-3">Sign Up</a>
-                    </div>
+  </header>
+  <!-- Page Content -->
+  <main class="bd-masthead" id="content" role="main">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-6 mx-auto col-md-6 order-md-2">
+          <!-- logo OR pic (svg)-->
 
-                 <div class="col-md px-2">
-                    <a href="/users/sign_in" class="btn btn-lg btn-outline-secondary w-100 mb-3">Sign In</a>
-                  </div>
-        
+          <!-- Begin Image -->
+          <!-- https://codepen.io/donovanh/pen/pvMeeB -->
+          <article class="wwdc">
+            <span class="spin span">
+              <!-- Large Circles -->
+              <div class="large circle one"></div>
+              <div class="large circle two"></div>
+              <div class="large circle three"></div>
+              <div class="large circle four"></div>
+              <div class="large circle five"></div>
+              <div class="large circle six"></div>
+              <div class="large circle seven"></div>
+              <div class="large circle eight"></div>
+            </span>
+            <span class="pulse span">
+              <!-- Small Shapes -->
+              <div class="small circle one"></div>
+              <div class="small squircle two"></div>
+              <div class="small circle three"></div>
+              <div class="small squircle four"></div>
+              <div class="small circle five"></div>
+              <div class="small squircle six"></div>
+              <div class="small circle seven"></div>
+              <div class="small squircle eight"></div>
+            </span>
+            <!-- Squircles -->
+            <span class="spin-reverse span">
+              <div class="large squircle one"></div>
+            </span>
+            <div class="large squircle two">
+              <div class="content">
+                <svg viewBox="0 0 160 164" xmlns="http://www.w3.org/2000/svg">
+                  <g>
+                    <g id="svg_1">
+                    </g>
+                  </g>
+                </svg>
+                <h1 class="logo-pic">Blocipedia</h1>
+                <p class="logo-pic">2019</p>
               </div>
             </div>
-         
+          </article>
+
+          <!-- image -->
+
+        </div>
+        <div class="col-md-6 order-md-1 text-center text-md-left pr-md-5">
+          <h1 class="mb-3 bd-text-purple-bright">Welcome to Blocipedia</h1>
+          <p class="lead">
+            Blocipedia allows users to create their own wikis and share them publicly or privately with other
+            collaborators.
+          </p>
+          <p class="lead mb-4">
+            <ul>
+              <li>anyone can edit almost every page except private one</li>
+              <li>anyone can upgrade to a premium member or downgrade to standard member</li>
+              <li>premium members can edit private page</li>
+              <li>premium members can invite any users to collaborate on the private page</li>
+            </ul>
+          </p>
+          <div class="row mx-n2">
+            <div class="col-md px-2">
+              <a href="/users/sign_up" class="btn btn-lg btn-outline-info w-100 mb-3">Sign Up</a>
+            </div>
+
+            <div class="col-md px-2">
+              <a href="/users/sign_in" class="btn btn-lg btn-outline-secondary w-100 mb-3">Sign In</a>
+            </div>
+
           </div>
-        </main>
-      <!-- /.container -->
+        </div>
 
-        <!-- Page Features -->
+      </div>
+  </main>
+  <!-- /.container -->
 
-<div class="masthead-followup row m-0 border border-white">
+  <!-- Page Features -->
+
+  <div class="masthead-followup row m-0 border border-white">
     <div class="col-12 col-md-4 p-3 p-md-5 bg-light border border-white">
-    
+
       <h3>Free Membership</h3>
       <p>Public Wikis ONLY</p>
       <li>create a topic and share your knowledge</li>
       <li>search for a topic and add your knowledge</li>
       <li>upgrade to a Premium member and edit your own Wikis</li>
- 
+
       <hr class="half-rule">
-      <a class="btn btn-outline-primary" href="/users/sign_in" >Sign In</a>
+      <a class="btn btn-outline-primary" href="/users/sign_in">Sign In</a>
     </div>
-  
+
     <div class="col-12 col-md-4 p-3 p-md-5 bg-light border border-white">
-      
+
       <h3>Premium Membership</h3>
       <p>Private & Public Wikis</p>
       <li>create a private topic and keep it as your secret</li>
@@ -120,22 +124,28 @@
       <hr class="half-rule">
       <a class="btn btn-outline-primary" href="/users/sign_in">Sign In</a>
     </div>
-  
+
     <div class="col-12 col-md-4 p-3 p-md-5 bg-light border border-white">
-     
-      <h3>Coming soon</h3>
-      <p>
-        Coming soon......
+
+      <h3>App build with</h3>
+      <p>Node.js, Express.js, ejs, Request,  Bootstrap, JQuery, and PostgreSQL.
+        <li>Payment Integration using Stripe</li>
+        <li>Email Sign-Up verification using SendGrid</li>
+        <li>Using Morgan for route logging</li>
+        <li>Encryption provided by bcrypt.js</li>
+        <li>Tested with Jasmine</li>
+        <li>Authenticated with Passport.js</li>
       </p>
       <hr class="half-rule">
       <a href="/" class="btn btn-outline-primary">Read more</a>
     </div>
   </div>
 
-      <% include ./partials/baseScripts.ejs %>
+  <% include ./partials/baseScripts.ejs %>
 
-      <!-- footer -->
-      <% include ./partials/footer.ejs %>
+  <!-- footer -->
+  <% include ./partials/footer.ejs %>
 
-    </body>
+</body>
+
 </html>
