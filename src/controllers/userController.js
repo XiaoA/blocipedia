@@ -93,7 +93,7 @@ module.exports = {
 
 
     downgrade(req, res, next) {
-
+        wikiQueries.privateToPublic(req.user.dataValues.id);
         userQueries.downgrade(req.params.id, (err, user) => {
             if (err || user === null) {
                 req.flash("notice", "You are no longer a premium user.");

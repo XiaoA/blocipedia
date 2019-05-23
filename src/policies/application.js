@@ -50,8 +50,7 @@ module.exports = class ApplicationPolicy {
 	}
 
 	destroy() {
-	  return this.new() &&
-            this.record && (this._isOwner() || this._isAdmin());
+	  return this.new() && this.record && (this._isOwner() || this._isAdmin());
 	}
 
 	showCollaborators() {
