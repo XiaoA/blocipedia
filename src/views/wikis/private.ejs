@@ -14,7 +14,7 @@
       <ul class="list-group">
         <% wikis.forEach((wiki) => { %>
           
-          <% if(wiki.private ==true && (currentUser && (currentUser.role == "premium" || currentUser.role == "admin"))) { %>
+          <% if(wiki.private ==true && (currentUser && (currentUser.id == wiki.userId && currentUser.role == "premium" || currentUser.role == "admin"))) { %>
             <li class="list-group-item">
               <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
               
@@ -26,8 +26,10 @@
                   <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
              <% } %>
+
             </li>
           <% } %>
+          
         <% }) %>
       </ul>
     </main>
