@@ -17,7 +17,6 @@
     <svg class="profile-logo">
       <symbol id="s-text">
         <text text-anchor="middle" x="50%" y="50%">Profile</text>
-
       </symbol>
 
       <g class="g-ants">
@@ -49,8 +48,11 @@
         <form action="/users/<%=currentUser.id %>/upgrade" method="POST">
 
           <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_NV8CnxeN2OzZ2Ci9buoO465X00jHv0qNeN"
-            data-amount="1500" data-name="Stripe.com" data-description="Preimium Membership Charge" data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-            data-locale="auto" data-currency="usd"></script>
+          data-amount="1500" 
+          data-name="Stripe.com" 
+          data-description="Preimium Membership Charge" data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+          data-locale="auto" 
+          data-currency="usd"></script>
 
         </form>
       </div>
@@ -70,7 +72,9 @@
         <div class="downgrade">
 
           <!-- Trigger the modal with a button -->
-          <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal">Downgrade</button>
+          <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" 
+          data-target="#myModal"
+          >Downgrade</button>
 
           <!-- Modal -->
           <div class="modal fade" id="myModal" role="dialog">
@@ -78,17 +82,21 @@
 
               <!-- Modal content-->
               <div class="modal-content">
+
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-
                 </div>
+
                 <div class="modal-body">
                   <p>Do you really want to downgrade?</p>
                 </div>
+
                 <div class="modal-footer">
-                  <button class="btn btn-danger" type="submit" data-toggle="collapse" data-target="#collapseExample"
-                    aria-expanded="false" aria-controls="collapseExample">Submit</button>
+                  <button class="btn btn-danger" type="submit" data-toggle="collapse" 
+                  data-target="#collapseExample"
+                  aria-expanded="false" aria-controls="collapseExample">Submit</button>
                 </div>
+
               </div>
 
             </div>
