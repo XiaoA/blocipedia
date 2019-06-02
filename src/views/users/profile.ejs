@@ -71,7 +71,7 @@
     <h4 class="floating-text"><a href="/wikis"> 🌸 More Features Coming Soon &#128540; </a></h4>
     <div>
 
-      <form name=myform action="/users/<%=currentUser.id%>/downgrade" method="POST">
+      <!-- <form name=myform action="/users/<%=currentUser.id%>/downgrade" method="POST">
 
           <p><a type="button" class="btn btn-danger btn-lg" data-toggle="modal" 
           data-target="#myModal"
@@ -91,7 +91,7 @@
                </div> 
 
                 <div class="modal-footer"> 
-                  <button class="btn btn-danger" type="submit" data-toggle="collapse" 
+                  <button class="btn btn-danger" type="submit" data-toggle="collapse"
                   data-target="#collapseExample"
                   aria-expanded="false" aria-controls="collapseExample">Submit</button>
                  </div>
@@ -100,9 +100,30 @@
 
             </div>
           </div> 
-      </form>
+      </form> -->
 
+      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Downgrade</button>
 
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+        
+            <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button></div>
+
+              <div class="modal-body">
+                  <p>Do you really want to downgrade?</p>
+              </div>
+            
+            <div class="modal-footer">
+                <form name=myform action="/users/<%=currentUser.id%>/downgrade" method="POST">
+                  <button class="btn btn-danger" type="submit">Submit</button>
+              </form>
+            </div>
+          </div>
+          </div>
+      
 
     </div>
     <% } %>
