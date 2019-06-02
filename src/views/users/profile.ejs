@@ -12,21 +12,36 @@
   <main class="container">
 
     <% include ../static/partials/messages.ejs %>
+    <!-- Profile title -->
 
-    <h1>Profile</h1>
-    <hr>
+    <svg class="profile-logo">
+      <symbol id="s-text">
+        <text text-anchor="middle" x="50%" y="50%">Profile</text>
 
-    <div class="list-group"><h4>
-      <a href="/wikis" class="list-group-item list-group-item-action list-group-item-success">public wikis</a>
-     
-      <a href="/wikis/new" class="list-group-item list-group-item-action list-group-item-warning">Create a new wiki</a>
-      <a href="/users/<%= currentUser.id %>/collaborations" class="list-group-item list-group-item-action list-group-item-info">Collaborations</a></h4>
+      </symbol>
+
+      <g class="g-ants">
+        <use xlink:href="#s-text" class="text-copy"></use>
+        <use xlink:href="#s-text" class="text-copy"></use>
+        <use xlink:href="#s-text" class="text-copy"></use>
+        <use xlink:href="#s-text" class="text-copy"></use>
+        <use xlink:href="#s-text" class="text-copy"></use>
+      </g>
+    </svg>
+    <!-- end Profile -->
+
+    <div class="list-group">
+
+      <h4 class="floating-text"><a href="/wikis"> 🌼 See public wikis</a></h4>
+      <h4 class="floating-text"><a href="/wikis/new"> 🍀 Create a new wiki</a></h4>
+      <h4 class="floating-text"><a href="/users/<%= currentUser.id %>/collaborations"> 🌷 Edit collaborations</a></h4>
+
     </div>
 
     <% if(currentUser.role == "standard") { %>
-
-    <h2>Upgrade your account</h2>
     <hr>
+    <h2>Upgrade your account</h2>
+
     <p>When you upgrade to premium, you'll gain access to make your own private wikis.</p>
 
     <div class="row">
@@ -46,14 +61,43 @@
     <!-- Downgrade account -->
     else { %>
     <% if(currentUser.role === "premium"); { %>
+      <h4 class="floating-text"><a href="/wikis/private"> 🌱 See private wikis</a></h4>
     <hr>
-
+    <h4 class="floating-text"><a href="/wikis"> 🌸 More Features Coming Soon &#128540; </a></h4>
     <div>
 
-      <form action="/users/<%=currentUser.id%>/downgrade" method="POST">
-        <button class="btn btn-danger" type="submit" data-toggle="collapse" data-target="#collapseExample"
-          aria-expanded="false" aria-controls="collapseExample"> Downgrade Account</button>
+      <form name=myform action="/users/<%=currentUser.id%>/downgrade" method="POST">
+        <div class="downgrade">
+
+          <!-- Trigger the modal with a button -->
+          <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal">Downgrade</button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                </div>
+                <div class="modal-body">
+                  <p>Do you really want to downgrade?</p>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-danger" type="submit" data-toggle="collapse" data-target="#collapseExample"
+                    aria-expanded="false" aria-controls="collapseExample">Submit</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
       </form>
+
+
 
     </div>
     <% } %>
